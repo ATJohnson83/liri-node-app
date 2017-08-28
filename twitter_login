@@ -1,0 +1,24 @@
+Twitter Login
+User: Jerry N. Jackson
+Email: JerryNJackson@Gmail.com
+Pass: JerryNJackson
+
+Application Settings
+Keep the "Consumer Secret" a secret. This key should never be human-readable in your application.
+Consumer Key (API Key)	mj6xSuDU1YHjQ1lvxZvVRbGbw
+Consumer Secret (API Secret)	h64Pp9WUwl8vkUAKkj0B0okeEokugEIfRtWGOZ6gYWcKqulMZ1
+Access Level	Read and write (modify app permissions)
+Owner	JerryNJackson
+Owner ID	902184079919112192
+
+Your Access Token
+This access token can be used to make API requests on your own account's behalf. Do not share your access token secret with anyone.
+Access Token	902184079919112192-pXGjLo3mNGJrkZy5C8GbHO2wbedrEox
+Access Token Secret	Zh2SxcIKYS4wJWBFEU3w8QPYxGQxPOiH8kbnpZdmJcayi
+Access Level	Read and write
+Owner	JerryNJackson
+Owner ID	902184079919112192
+
+Spotify API Info
+Client ID: 29cf50802ff54e12abc2795237a5263f
+Client Secret: 816d5d1974f44e00a5f26f0947ed85fa
