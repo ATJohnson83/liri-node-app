@@ -43,8 +43,12 @@ function tweets(){
 			console.log(error);
 		}
 		else{
-		console.log(JSON.stringify(tweets, null, 2));
+		// console.log(JSON.stringify(tweets, null, 2));
 		// console.log(response);
+			tweets.forEach( function (element) { 
+
+				console.log(element.text);
+			})
 		}
 	})
 };
@@ -56,7 +60,17 @@ function mySpotify(){
 			return console.log(err);
 		}
 		else{
-			console.log(JSON.stringify(data, null, 2));
+			// 
+			data.tracks.items.forEach( function (element) { 
+				console.log(`${element.name} (ALBUM)`);
+				console.log(`${element.external_urls.spotify} (URL)`);
+				element.artists.forEach( function (artist) {
+					console.log(`${artist.name} (ARTIST)`);
+				});
+
+				console.log("----------------------------------------------------");
+
+			});
 		}
 	});
 };
