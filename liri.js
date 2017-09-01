@@ -48,6 +48,8 @@ function tweets(){
 			tweets.forEach( function (element) { 
 
 				console.log(element.text);
+				console.log(element.created_at)
+				console.log('------------------------------');
 			})
 		}
 	})
@@ -59,17 +61,16 @@ function mySpotify(){
 		if (err){
 			return console.log(err);
 		}
-		else{
-			// 
+		else{ 
+			// console.log(JSON.stringify(data, null, 2));
 			data.tracks.items.forEach( function (element) { 
-				console.log(`${element.name} (ALBUM)`);
-				console.log(`${element.external_urls.spotify} (URL)`);
 				element.artists.forEach( function (artist) {
-					console.log(`${artist.name} (ARTIST)`);
-				});
-
+					console.log(`ARTIST:  ${artist.name} `);
+					});
+				console.log(`TRACK:  ${element.name} `);
+				console.log(`PREVIEW URL:  ${element.preview_url} `);
+				console.log(`ALBUM:  ${element.album.name} `);
 				console.log("----------------------------------------------------");
-
 			});
 		}
 	});
@@ -79,7 +80,16 @@ function movie(){
 	// code to connect with OMDB here
 	request("http://www.omdbapi.com/?t="+value+"&y=&plot=short&apikey=40e9cece", function(error, response, body) {
 		if (!error && response.statusCode === 200) {
-			console.log(JSON.parse(body));
+			var film = JSON.parse(body);
+			// console.log(film);
+			console.log(film.Title);
+			console.log(film.Year);
+			console.log(film.Ratings[0].Value);
+			console.log(film.Ratings[1].Value);
+			console.log(film.Country);
+			console.log(film.Language);
+			console.log(film.Plot);
+			console.log(film.Actors);
 		}
 	});
 }
