@@ -78,19 +78,23 @@ function mySpotify(){
 
 function movie(){
 	// code to connect with OMDB here
+	if (value == null || value == ""){
+			value = "Mr. Nobody";
+		};
 	request("http://www.omdbapi.com/?t="+value+"&y=&plot=short&apikey=40e9cece", function(error, response, body) {
 		if (!error && response.statusCode === 200) {
 			var film = JSON.parse(body);
 			// console.log(film);
-			console.log(film.Title);
-			console.log(film.Year);
-			console.log(film.Ratings[0].Value);
-			console.log(film.Ratings[1].Value);
-			console.log(film.Country);
-			console.log(film.Language);
-			console.log(film.Plot);
-			console.log(film.Actors);
+			console.log(`Title: ${film.Title}`);
+			console.log(`Year: ${film.Year}`);
+			console.log(`IMDB Rating: ${film.Ratings[0].Value}`);
+			console.log(`Rotten Tomatoes Rating: ${film.Ratings[1].Value}`);
+			console.log(`Country: ${film.Country}`);
+			console.log(`Language: ${film.Language}`);
+			console.log(`Plot: ${film.Plot}`);
+			console.log(`Actors: ${film.Actors}`);
 		}
+
 	});
 }
 
