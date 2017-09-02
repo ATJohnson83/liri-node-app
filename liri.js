@@ -105,5 +105,28 @@ function movie(){
 
 function justDoIt(){
 	//code to run node fs to connect with spotify here 
-}
+	var fs = require('fs');
+	fs.readFile('random.txt','utf8',function(error,data){
+		if(error){
+			return console.log(error);
+		}
+		var dataArr = data.split(',');
+		action = dataArr[0];
+		value = dataArr[1];
+		console.log(action,value);
+		
+		switch (action){
+			case 'my-tweets':
+				tweets();
+				break;
+			case 'spotify-this-song':
+				mySpotify();
+				break;
+			case 'movie-this':
+				movie();
+				break;
+		};
+
+	})
+};
 	
