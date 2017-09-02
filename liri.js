@@ -56,8 +56,12 @@ function tweets(){
 };
 
 function mySpotify(){
+	var content = {type:'track', query:value, limit: 10 };
+	if (value == null || value == ""){
+			content = {type:'artist,track', query:'Ace of Base, The Sign', limit:10};
+		};
 	//code to connect with spotify here
-	spotify.search({type:'track', query:value}, function(err,data){
+	spotify.search(content, function(err,data){
 		if (err){
 			return console.log(err);
 		}
