@@ -45,13 +45,18 @@ function tweets(){
 		else{
 		// console.log(JSON.stringify(tweets, null, 2));
 		// console.log(response);
+		fs.appendFile('log.txt',"\n\n",function(err){
+					if(err){
+						console.log(err);
+					}
+				});
 			tweets.forEach( function (element) { 
 
 				console.log(element.text);
 				console.log(element.created_at);
 				console.log('------------------------------');
 
-				var tweetArr = [element.text,element.created_at];
+				var tweetArr = [element.text,element.created_at+'\n'];
 			
 				fs.appendFile('log.txt',tweetArr,function(err){
 					if(err){
