@@ -45,7 +45,7 @@ function tweets(){
 		else{
 		// console.log(JSON.stringify(tweets, null, 2));
 		// console.log(response);
-		fs.appendFile('log.txt',"\n\n",function(err){
+		fs.appendFile('log.txt',"\n\n<<<NEW TWITTER SEARCH>>>\n",function(err){
 					if(err){
 						console.log(err);
 					}
@@ -72,6 +72,7 @@ function tweets(){
 };
 
 function mySpotify(){
+	var spotArr = [];
 	var content = {type:'track', query:value, limit: 10 };
 	if (value == null || value == ""){
 			content = {type:'artist,track', query:'Ace of Base, The Sign', limit:10};
@@ -86,18 +87,31 @@ function mySpotify(){
 			data.tracks.items.forEach( function (element) { 
 				element.artists.forEach( function (artist) {
 					console.log(`ARTIST:  ${artist.name} `);
+					spotArr.push(`ARTIST:  ${artist.name} `);
 				});
 				console.log(`TRACK:  ${element.name} `);
+				spotArr.push(`\nTRACK:  ${element.name} `);
 				console.log(`PREVIEW URL:  ${element.preview_url} `);
+				spotArr.push(`\nPREVIEW URL:  ${element.preview_url} `);
 				console.log(`ALBUM:  ${element.album.name} `);
+				spotArr.push(`\nALBUM:  ${element.album.name} `);
 				console.log("----------------------------------------------------");
+				spotArr.push("\n----------------------------------------------------\n");
 			});
 		}
+		var printSpot = spotArr.join('');
+		fs.appendFile('log.txt',"\n\n<<<NEW SPOTIFY SEARCH>>>\n"+printSpot,function(err){
+			if(err){
+			console.log(err);
+			}
+		});
 	});
+
 };
 
 function movie(){
 	// code to connect with OMDB here
+	var movieArr = [];
 	if (value == null || value == ""){
 			value = "Mr. Nobody";
 		};
@@ -106,15 +120,28 @@ function movie(){
 			var film = JSON.parse(body);
 			// console.log(film);
 			console.log(`Title: ${film.Title}`);
+			movieArr.push(`Title: ${film.Title}`);
 			console.log(`Year: ${film.Year}`);
+			movieArr.push(`\nYear: ${film.Year}`);
 			console.log(`IMDB Rating: ${film.Ratings[0].Value}`);
+			movieArr.push(`\nIMDB Rating: ${film.Ratings[0].Value}`);
 			console.log(`Rotten Tomatoes Rating: ${film.Ratings[1].Value}`);
+			movieArr.push(`\nRotten Tomatoes Rating: ${film.Ratings[1].Value}`);
 			console.log(`Country: ${film.Country}`);
+			movieArr.push(`\nCountry: ${film.Country}`);
 			console.log(`Language: ${film.Language}`);
+			movieArr.push(`\nLanguage: ${film.Language}`);
 			console.log(`Plot: ${film.Plot}`);
+			movieArr.push(`\nPlot: ${film.Plot}`);
 			console.log(`Actors: ${film.Actors}`);
+			movieArr.push(`\nActors: ${film.Actors}\n`);
 		}
-
+		var printMov = movieArr.join('');
+		fs.appendFile('log.txt',"\n\n<<<NEW MOVIE SEARCH>>>\n"+printMov,function(err){
+			if(err){
+			console.log(err);
+			}
+		});
 	});
 }
 
