@@ -1,6 +1,6 @@
 var action = process.argv[2];
 var value = process.argv[3];
-
+var fs = require('fs');
 var key = require('./keys.js');
 var request = require('request');
 
@@ -48,9 +48,20 @@ function tweets(){
 			tweets.forEach( function (element) { 
 
 				console.log(element.text);
-				console.log(element.created_at)
+				console.log(element.created_at);
 				console.log('------------------------------');
-			})
+
+				var tweetArr = [element.text,element.created_at];
+			
+				fs.appendFile('log.txt',tweetArr,function(err){
+					if(err){
+						console.log(err);
+					}
+					// else{
+					// 	console.log('Content Added');
+					// }
+				})
+			});
 		}
 	})
 };
@@ -70,7 +81,7 @@ function mySpotify(){
 			data.tracks.items.forEach( function (element) { 
 				element.artists.forEach( function (artist) {
 					console.log(`ARTIST:  ${artist.name} `);
-					});
+				});
 				console.log(`TRACK:  ${element.name} `);
 				console.log(`PREVIEW URL:  ${element.preview_url} `);
 				console.log(`ALBUM:  ${element.album.name} `);
@@ -105,7 +116,6 @@ function movie(){
 
 function justDoIt(){
 	//code to run node fs to connect with spotify here 
-	var fs = require('fs');
 	fs.readFile('random.txt','utf8',function(error,data){
 		if(error){
 			return console.log(error);
